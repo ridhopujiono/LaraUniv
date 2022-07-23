@@ -32,7 +32,7 @@
     }
 
     body {
-        background-image: url("{{url('background.jpg')}}");
+        background-image: url("{{ url('background.jpg') }}");
         background-size: cover;
         background-repeat: no-repeat;
         font-family: "Poppins", Arial, Helvetica, sans-serif;
@@ -87,7 +87,7 @@
         border-radius: 5px;
         padding: 1em;
         margin-top: 2em;
-        background-color: #2e8bc0;
+        background-color: #0256af;
         cursor: pointer;
         transition: ease-in-out .3s;
     }
@@ -144,13 +144,15 @@
         <p class="title">Universitas Ronggolawe</p>
         <p class="subtitle">Portal Masuk</p>
         <div>
-            <form class="formContainer" action="{{url('auth')}}" method="post">
+            <form class="formContainer" action="{{ url('auth') }}" method="post">
                 @csrf
                 @error('name')
-                <div class="alert alert-danger text-center" style="background-color: #fff3f4;
+                    <div class="alert alert-danger text-center"
+                        style="background-color: #fff3f4;
                 font-size: 12px;
                 padding: 10px;
-                color: #ff7171;">data anda tidak ditemukan di sistem</div>
+                color: #ff7171;">
+                        data anda tidak ditemukan di sistem</div>
                 @enderror
                 <input class="formInput" type="text" name="name" id="" placeholder="Nama Pengguna">
                 <input class="formInput" type="password" name="password" id="" placeholder="Kata Sandi">

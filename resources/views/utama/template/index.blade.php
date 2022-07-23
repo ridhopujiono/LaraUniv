@@ -10,8 +10,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="template/assets/img/favicon.png" rel="icon">
-    <link href="template/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="{{ asset('template/assets/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('template/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link
@@ -19,15 +19,15 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="template/assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="template/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="template/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="template/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="template/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="template/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="{{ asset('template/assets/vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ asset('template/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('template/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('template/assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('template/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('template/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="template/assets/css/style.css" rel="stylesheet">
+    <link href="{{ asset('template/assets/css/style.css') }}" rel="stylesheet">
 
     <!-- =======================================================
   * Template Name: BizLand - v3.8.0
@@ -48,8 +48,8 @@
                 <i class="bi bi-phone d-flex align-items-center ms-4"><span>(0356)322233</span></i>
             </div>
             <div class="contact-info d-flex align-items-center">
-                <i class="bi bi-person d-flex align-items-center"> &nbsp; {{auth()->user()->mahasiswa->nama}}
-                    ({{auth()->user()->mahasiswa->jurusan->nama_jurusan}})</i>
+                <i class="bi bi-person d-flex align-items-center"> &nbsp; {{ auth()->user()->mahasiswa->nama }}
+                    ({{ auth()->user()->mahasiswa->jurusan->nama_jurusan }})</i>
             </div>
         </div>
     </section>
@@ -58,17 +58,23 @@
     <header id="header" class="d-flex align-items-center">
         <div class="container d-flex align-items-center justify-content-between">
 
-            <h1 class="logo"><a href="index.html"><img src="logo.png" alt=""></a></h1>
+            <h1 class="logo"><a href="index.html"><img src="logo.png')}}" alt=""></a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo"><img src="template/assets/img/logo.png" alt=""></a>-->
+            <!-- <a href="index.html" class="logo"><img src="{{ asset('template/assets/img/logo.png') }}" alt=""></a>-->
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="#hero">Beranda</a></li>
-                    <li><a class="nav-link scrollto" href="#about">Jurusan</a></li>
-                    <li><a class="nav-link scrollto" href="#services">Mahasiswa</a></li>
-                    <li><a class="nav-link scrollto " href="#portfolio">Tentang</a></li>
-                    <li><a class="nav-link scrollto" href="#team">Kontak</a></li>
+                    <li><a class="nav-link scrollto {{ Request::is('utama') ? 'active' : '' }}"
+                            href="{{ url('utama') }}">Beranda</a></li>
+                    <li><a class="nav-link scrollto {{ Request::is('jurusan*') ? 'active' : '' }}"
+                            href="{{ url('jurusan') }}">Jurusan</a></li>
+                    {{-- <li><a class="nav-link scrollto" href="{{ url('mahasiswa') }}">Mahasiswa</a></li> --}}
+                    <li><a class="nav-link scrollto {{ Request::is('tentang*') ? 'active' : '' }}"
+                            href="{{ url('tentang') }}">Tentang</a></li>
+                    <li><a class="nav-link scrollto {{ Request::is('kontak*') ? 'active' : '' }}"
+                            href="#footer">Kontak</a></li>
+                    <li><a class="nav-link scrollto {{ Request::is('logout*') ? 'active' : '' }}"
+                            href="{{ url('logout') }}">Keluar</a></li>
 
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
@@ -112,7 +118,8 @@
                         <h4>Laman Terkait</h4>
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">ristekdikti.go.id</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">lldikti7.ristekdikti.go.id</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">lldikti7.ristekdikti.go.id</a>
+                            </li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">sinta2.ristekdikti.go.id</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">banpt.or.id</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">pddikti.ristekdikti.go.id</a></li>
@@ -144,17 +151,17 @@
             class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="template/assets/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="template/assets/vendor/aos/aos.js"></script>
-    <script src="template/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="template/assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="template/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="template/assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="template/assets/vendor/waypoints/noframework.waypoints.js"></script>
-    <script src="template/assets/vendor/php-email-form/validate.js"></script>
+    <script src="{{ asset('template/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+    <script src="{{ asset('template/assets/vendor/aos/aos.js') }}"></script>
+    <script src="{{ asset('template/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('template/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('template/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('template/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('template/assets/vendor/waypoints/noframework.waypoints.js') }}"></script>
+    <script src="{{ asset('template/assets/vendor/php-email-form/validate.js') }}"></script>
 
     <!-- Template Main JS File -->
-    <script src="template/assets/js/main.js"></script>
+    <script src="{{ asset('template/assets/js/main.js') }}"></script>
 
 </body>
 

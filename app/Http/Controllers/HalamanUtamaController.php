@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jurusan;
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 
 class HalamanUtamaController extends Controller
@@ -16,25 +18,26 @@ class HalamanUtamaController extends Controller
         return view('utama.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function jurusan()
     {
-        //
+        $data = Jurusan::all();
+        return view('utama.jurusan', [
+            "data" => $data
+        ]);
+    }
+    public function mahasiswa_jurusan($id)
+    {
+        $jurusan = Jurusan::find($id)->nama_jurusan;
+        $data = Mahasiswa::where('jurusan_id', $id)->get();
+        return view('utama.mahasiswa_jurusan', [
+            "data" => $data,
+            "nama_jurusan" => $jurusan
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function tentang()
     {
-        //
+        return view('utama.tentang');
     }
 
     /**

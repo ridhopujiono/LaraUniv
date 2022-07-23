@@ -9,5 +9,16 @@ class Jurusan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama_jurusan'];
+    protected $fillable = ['nama_jurusan', 'foto'];
+
+    public function getJumlah()
+    {
+        return Mahasiswa::where('jurusan_id', $this['id'])->count();
+    }
+
+    // Accessor
+    public function getJumlahAttribute()
+    {
+        return $this->getJumlah() ?? null;
+    }
 }

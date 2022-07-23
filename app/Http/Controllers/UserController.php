@@ -16,15 +16,27 @@ class UserController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            if (auth()->user()->level == 1) {
+
+            if (auth()->user()->level == "1") {
                 return redirect('utama');
-            } else {
-                return redirect('dashboard');
+            } else if (auth()->user()->level == "2") {
+                return redirect('manajemen_jurusan');
             }
         }
 
         return back()->withErrors([
             'name' => 'The provided credentials do not match our records.',
         ]);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
